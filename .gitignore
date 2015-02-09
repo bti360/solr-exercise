@@ -19,4 +19,5 @@ gradle-app.setting
 _rest_managed.json
 
 src/test/resources/solr-conf/gt/data
+src/test/resources/solr-conf/lib
 

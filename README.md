@@ -15,9 +15,10 @@ Solr exercise meant to develop Lucene text analysis knowledge + lightly touching
     * The update processor is defined in the SolrConfig file located at `src/test/resources/solr-conf/gt/conf/solrconfig.xml`. For an example custom processor see an example written in either Javascript (`src/test/resources/solr-conf/gt/conf/base64-decoder.js`) or Java (`src/main/java/..../Base64DecodingUpdateProcessorFactory.java`)
 
 ## Once you are happy with the test runs, let's index some real data!
-1. Unzip the Solr directory
-2. Open a new command prompt and `cd` into the Solr directory
-3. Start Solr via `bin/solr -f -s <path-to-solr-exercice-workspace-dir>/src/test/resources/solr-conf/`
-4. Download the sample data via `./gradlew downloadExampleData` command in the exercise directory
-5. Copy and run the url that was emitted from the download task
-6. If all went well, you indexed the data! You can access the admin page at `http://localhost:8983/solr/#/gt`
+1. If you created a custom Java update processor run the `./gradlew jar` task.
+2. Unzip the Solr directory
+3. Open a new command prompt and `cd` into the Solr directory
+4. Start Solr via `bin/solr -f -s <path-to-solr-exercice-workspace-dir>/src/test/resources/solr-conf/`
+5. Download the sample data via `./gradlew downloadExampleData` task in the exercise directory
+6. Copy and run the url that was emitted from the download task
+7. If all went well, you indexed the data! You can access the admin page at `http://localhost:8983/solr/#/gt`

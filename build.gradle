@@ -50,3 +50,7 @@ task downloadExampleData {
     println "Downloaded to: $fileStr"
     println "Index data via: http://localhost:8983/solr/gt/update/csv?stream.file=${fileStr}&stream.contentType=text/plain;charset=utf-8&commit=true&separator=%09&fieldnames=ip,sslcerts-hostname,sslcerts-certs,sslcerts-first-seen,sslcerts-last-seen,tcp80-response,tcp80-first-seen,tcp80-last-seen,rdns.hostname,rdns.first-seen,rdns.last-seen,network-start-ip,network-mask-length,postal-code,latitude,longitude,anonymous-proxy,satellite-provider,continent-code,continent,country-iso,country,subdivision-iso,subdivision,city,timezone,first-seen,last-seen&f.sslcerts-hostname.split=true&f.sslcerts-hostname.separator=::::&f.sslcerts-certs.separator=::::&f.sslcerts-certs.split=true"
 }
+
+jar{        
+    destinationDir  file("src/test/resources/solr-conf/lib")
+}
