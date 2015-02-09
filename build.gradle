@@ -1,0 +1,52 @@
+
+plugins {
+    id "de.undercouch.download" version "1.2"
+}
+
+import de.undercouch.gradle.tasks.download.Download
+import java.net.*;
+import java.io.*;
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+project.ext.javaVersion = '1.7'
+project.ext.solrVersion = '4.10.3'
+project.ext.slf4jVersion = '1.7.6'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://maven.restlet.com"
+    }
+}
+
+dependencies {
+	testCompile "org.apache.solr:solr-test-framework:${solrVersion}"
+	testCompile "org.apache.lucene:lucene-test-framework:${solrVersion}"
+	testCompile "junit:junit:4.11"
+	testCompile "org.hamcrest:hamcrest-all:1.3"
+	testCompile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    testCompile "org.slf4j:slf4j-log4j12:${slf4jVersion}"
+
+    compile "org.apache.solr:solr-core:${solrVersion}"
+    compile "org.apache.solr:solr-solrj:${solrVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.apache.commons:commons-lang3:3.3.1"
+}
+
+task downloadExampleData {
+    def file = "${temporaryDir}/data.csv"
+    def fileStr = file.toString()
+    download {
+        src "https://s3.amazonaws.com/bti360/ghosttree/etl-snowball/snowball_50"
+        dest fileStr
+    }
+    println "Downloaded to: $fileStr"
+    println "Index data via: http://localhost:8983/solr/gt/update/csv?stream.file=${fileStr}&stream.contentType=text/plain;charset=utf-8&commit=true&separator=%09&fieldnames=ip,sslcerts-hostname,sslcerts-certs,sslcerts-first-seen,sslcerts-last-seen,tcp80-response,tcp80-first-seen,tcp80-last-seen,rdns.hostname,rdns.first-seen,rdns.last-seen,network-start-ip,network-mask-length,postal-code,latitude,longitude,anonymous-proxy,satellite-provider,continent-code,continent,country-iso,country,subdivision-iso,subdivision,city,timezone,first-seen,last-seen&f.sslcerts-hostname.split=true&f.sslcerts-hostname.separator=::::&f.sslcerts-certs.separator=::::&f.sslcerts-certs.split=true"
+}
