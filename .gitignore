@@ -1,12 +1,22 @@
-*.class
+bin/
+target/
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.ear
+*.project
+*.classpath
+*.class
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+build/
+.settings/
+.gradle/
+gradle.properties
+*.hprof
+gradle-app.setting
+.idea/
+*.iml
+_rest_managed.json
+
+src/test/resources/solr-conf/gt/data
+
